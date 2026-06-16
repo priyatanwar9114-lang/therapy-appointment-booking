@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book Therapy Session</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        🧠 MindCare Therapy
+    </div>
+
+    <div class="progress">
+        Step 2 of 2 - Additional Details
+    </div>
+
+    <h1>Book Your Therapy Session</h1>
+
+    <p class="subtitle">
+        Please fill in the details below to schedule your appointment.
+    </p>
+
+    <form>
+
+        <label>Gender:</label>
+        <br>
+        <select id="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <br><br>
+
+        <label>Appointment Date:</label>
+        <br>
+        <input type="date" id="appointmentDate" required>
+
+        <br><br>
+
+        <label>Therapy Reason (Optional):</label>
+        <br>
+        <textarea rows="4" placeholder="Write your reason here"></textarea>
+
+        <br><br>
+
+        <label>Select Therapist:</label>
+        <br>
+        <select id="therapist" required>
+            <option value="">Choose Therapist</option>
+            <option>Dr. Sharma</option>
+            <option>Dr. Gupta</option>
+            <option>Dr. Mehta</option>
+        </select>
+
+        <br><br>
+
+        <label>Session Mode:</label>
+        <br>
+        <select id="sessionMode" required>
+            <option value="">Select Mode</option>
+            <option>Online</option>
+            <option>Offline</option>
+        </select>
+
+        <br><br>
+
+        <label>Select Time Slot:</label>
+        <br>
+        <select id="timeSlot" required>
+            <option value="">Select Time Slot</option>
+            <option>09:00 AM</option>
+            <option>10:00 AM</option>
+            <option>11:00 AM</option>
+            <option>12:00 PM</option>
+            <option>02:00 PM</option>
+            <option>03:00 PM</option>
+            <option>04:00 PM</option>
+            <option>05:00 PM</option>
+        </select>
+
+        <br><br>
+
+        <button type="button" onclick="submitForm()">
+            Final Submit
+        </button>
+
+    </form>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Appointment Confirmed</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#d4fc79,#96e6a1);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            margin:0;
+        }
+
+        .thankyou-box{
+            background:white;
+            width:500px;
+            padding:40px;
+            border-radius:25px;
+            text-align:center;
+            box-shadow:0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .success-icon{
+            font-size:70px;
+        }
+
+        h1{
+            color:#27ae60;
+            margin-bottom:10px;
+        }
+
+        h2{
+            color:#2c3e50;
+        }
+
+        p{
+            color:#555;
+            font-size:16px;
+            line-height:1.6;
+        }
+
+        .details{
+            text-align:left;
+            background:#f8f9fa;
+            padding:20px;
+            border-radius:15px;
+            margin-top:20px;
+        }
+
+        .footer{
+            margin-top:25px;
+            color:gray;
+            font-style:italic;
+        }
+
+        .btn{
+            background:#27ae60;
+            color:white;
+            padding:12px 20px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:16px;
+            text-decoration:none;
+        }
+
+        .btn:hover{
+            background:#219150;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="thankyou-box">
+
+    <div class="success-icon">
+        ✅
+    </div>
+
+    <h1>Appointment Confirmed!</h1>
+
+    <h2>
+        Thank You,
+        <span id="userName"></span>
+    </h2>
+
+    <p>
+        Your therapy appointment has been successfully booked.
+        We appreciate your trust in MindCare Therapy.
+    </p>
+
+    <div class="details">
+
+        <p><b>🆔 Appointment ID:</b> <span id="appointmentId"></span></p>
+
+        <p><b>📅 Booking Date:</b> <span id="bookingDate"></span></p>
+
+        <p><b>📅 Appointment Date:</b> <span id="date"></span></p>
+
+        <p><b>🧠 Therapist:</b> <span id="therapist"></span></p>
+
+        <p><b>💻 Session Mode:</b> <span id="mode"></span></p>
+
+        <p><b>⏰ Time Slot:</b> <span id="slot"></span></p>
+
+    </div>
+
+    <br>
+
+    <a href="index.html">
+        <button class="btn">
+            Book Another Appointment
+        </button>
+    </a>
+
+    <div class="footer">
+
+        🌿 Take care of yourself. Healing begins with one step.
+
+    </div>
+
+</div>
+
+<script>
+
+document.getElementById("appointmentId").innerHTML =
+localStorage.getItem("appointmentId");
+
+document.getElementById("bookingDate").innerHTML =
+localStorage.getItem("bookingDate");
+
+document.getElementById("userName").innerHTML =
+localStorage.getItem("name");
+
+document.getElementById("date").innerHTML =
+localStorage.getItem("appointmentDate");
+
+document.getElementById("therapist").innerHTML =
+localStorage.getItem("therapist");
+
+document.getElementById("mode").innerHTML =
+localStorage.getItem("sessionMode");
+
+document.getElementById("slot").innerHTML =
+localStorage.getItem("timeSlot");
+
+</script>
+
+</body>
+
+</html>
