@@ -67,40 +67,55 @@
 
 <h1>Therapy Appointment Booking</h1>
 
-<form action="details.html">
+<form action="details.html" onsubmit="return validateForm()">
 
     <label>Name:</label>
     <br>
-    <input type="text" id="name"
-    placeholder="Enter your name" required>
+    <input type="text"
+           id="name"
+           placeholder="Enter your name"
+           onkeypress="return /[A-Za-z ]/.test(event.key)"
+           required>
 
     <br><br>
 
     <label>Age:</label>
     <br>
-    <input type="number" id="age"
-    placeholder="Enter your age" required>
+    <input type="number"
+           id="age"
+           min="18"
+           max="100"
+           placeholder="Enter your age"
+           required>
 
     <br><br>
 
     <label>Mobile Number:</label>
     <br>
-    <input type="tel" id="mobile"
-    placeholder="Enter your mobile number" required>
+    <input type="tel"
+           id="mobile"
+           maxlength="10"
+           placeholder="Enter your mobile number"
+           onkeypress="return /[0-9]/.test(event.key)"
+           required>
 
     <br><br>
 
     <label>Email:</label>
     <br>
-    <input type="email" id="email"
-    placeholder="Enter your email" required>
+    <input type="email"
+           id="email"
+           placeholder="example@gmail.com"
+           required>
 
     <br><br>
 
     <label>City:</label>
     <br>
-    <input type="text" id="city"
-    placeholder="Enter your city" required>
+    <input type="text"
+           id="city"
+           placeholder="Enter your city"
+           required>
 
     <br><br>
 
@@ -114,4 +129,5 @@
 
 <p>Contact: support@mindcaretherapy.com</p>
 
-</footer><script src="script.js"></script></body></html>
+</footer><script src="script.js"></script></body>
+</html>
