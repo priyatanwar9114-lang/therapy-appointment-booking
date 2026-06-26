@@ -1,96 +1,93 @@
 window.onload = function () {
 
-let today = new Date();
+    let today = new Date();
 
-let minDate = today.toISOString().split("T")[0];
+    let minDate = new Date(today);
 
-let maxDate = new Date(today);
-maxDate.setMonth(maxDate.getMonth() + 3);
+    let maxDate = new Date(today);
+    maxDate.setMonth(maxDate.getMonth() + 2);
 
-maxDate = maxDate.toISOString().split("T")[0];
+    function formatDate(date) {
+        let year = date.getFullYear();
+        let month = String(date.getMonth() + 1).padStart(2, "0");
+        let day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    }
 
-let dateInput = document.getElementById("appointmentDate");
+    let dateInput = document.getElementById("appointmentDate");
 
-if (dateInput) {
-    dateInput.min = minDate;
-    dateInput.max = maxDate;
-}
+    if (dateInput) {
+        dateInput.min = formatDate(minDate);
+        dateInput.max = formatDate(maxDate);
+    }
 
 };
 
 function saveBasicDetails() {
 
-localStorage.setItem(
-    "name",
-    document.getElementById("name").value
-);
-
-localStorage.setItem(
-    "age",
-    document.getElementById("age").value
-);
-
-localStorage.setItem(
-    "mobile",
-    document.getElementById("mobile").value
-);
-
-localStorage.setItem(
-    "email",
-    document.getElementById("email").value
-);
-
-localStorage.setItem(
-    "city",
-    document.getElementById("city").value
-);
+    localStorage.setItem("name", document.getElementById("name").value);
+    localStorage.setItem("age", document.getElementById("age").value);
+    localStorage.setItem("mobile", document.getElementById("mobile").value);
+    localStorage.setItem("email", document.getElementById("email").value);
+    localStorage.setItem("city", document.getElementById("city").value);
 
 }
 
-function submitForm() {
+async function submitForm() {
 
-localStorage.setItem(
-    "gender",
-    document.getElementById("gender").value
-);
+    localStorage.setItem("gender", document.getElementById("gender").value);
+    localStorage.setItem("appointmentDate", document.getElementById("appointmentDate").value);
+    localStorage.setItem("therapist", document.getElementById("therapist").value);
+    localStorage.setItem("sessionMode", document.getElementById("sessionMode").value);
+    localStorage.setItem("timeSlot", document.getElementById("timeSlot").value);
 
-localStorage.setItem(
-    "appointmentDate",
-    document.getElementById("appointmentDate").value
-);
+    let appointmentId = "APT" + Math.floor(Math.random() * 10000);
+    localStorage.setItem("appointmentId", appointmentId);
 
-localStorage.setItem(
-    "therapist",
-    document.getElementById("therapist").value
-);
+    let bookingDate = new Date().toLocaleDateString();
+    localStorage.setItem("bookingDate", bookingDate);
 
-localStorage.setItem(
-    "sessionMode",
-    document.getElementById("sessionMode").value
-);
+    const appointmentData = {
+        name: localStorage.getItem("name"),
+        age: localStorage.getItem("age"),
+        mobile: localStorage.getItem("mobile"),
+        email: localStorage.getItem("email"),
+        city: localStorage.getItem("city"),
+        gender: document.getElementById("gender").value,
+        appointmentDate: document.getElementById("appointmentDate").value,
+        therapist: document.getElementById("therapist").value,
+        sessionMode: document.getElementById("sessionMode").value,
+        timeSlot: document.getElementById("timeSlot").value,
+        appointmentId: appointmentId,
+        bookingDate: bookingDate
+    };
 
-localStorage.setItem(
-    "timeSlot",
-    document.getElementById("timeSlot").value
-);
+    try {
 
-let appointmentId = "APT" + Math.floor(Math.random() * 10000);
+        const response = await fetch("/appointment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(appointmentData)
+        });
 
-localStorage.setItem(
-    "appointmentId",
-    appointmentId
-);
+        const result = await response.json();
 
-let bookingDate = new Date().toLocaleDateString();
+        console.log(result);
 
-localStorage.setItem(
-    "bookingDate",
-    bookingDate
-);
+        alert("Your appointment has been successfully submitted!");
 
-alert("Your appointment has been successfully submitted!");
+        window.location.href = "thankyou.html";
 
-window.location.href = "thankyou.html";
+    }
+    catch (error) {
+
+        console.log(error);
+
+        alert("Error connecting to server.");
+
+    }
 
 }
 
@@ -133,4 +130,5 @@ function validateForm() {
     saveBasicDetails();
 
     return true;
+
 }
