@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MindCare Therapy Analytics</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="analytics-container">
+
+<h1>📊 MindCare Therapy Analytics Dashboard</h1>
+
+<p class="analytics-subtitle">
+Real-Time Appointment Insights
+</p>
+
+<div style="text-align:right; margin-bottom:20px;">
+
+<a href="admin.html">
+
+<button class="back-btn">
+⬅ Back to Admin Dashboard
+</button>
+
+</a>
+
+</div>
+
+<div class="analytics-grid">
+
+<div class="analytics-card">
+
+<h2>👨‍⚕ Therapist-wise Bookings</h2>
+
+<canvas id="therapistChart"></canvas>
+
+</div>
+
+<div class="analytics-card">
+
+<h2>🥧 Online vs Offline Sessions</h2>
+
+<canvas id="sessionChart"></canvas>
+
+</div>
+
+<div class="analytics-card">
+
+<h2>📊 Daily Bookings</h2>
+
+<canvas id="dailyChart"></canvas>
+
+</div>
+
+<div class="analytics-card">
+
+<h2>📅 Appointment Date Trend</h2>
+
+<canvas id="dateChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="analytics.js"></script>
+
+</body>
+
+</html>

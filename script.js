@@ -42,12 +42,15 @@ async function submitForm() {
     localStorage.setItem("timeSlot", document.getElementById("timeSlot").value);
 
     let appointmentId = "APT" + Math.floor(Math.random() * 10000);
+
     localStorage.setItem("appointmentId", appointmentId);
 
     let bookingDate = new Date().toLocaleDateString();
+
     localStorage.setItem("bookingDate", bookingDate);
 
     const appointmentData = {
+
         name: localStorage.getItem("name"),
         age: localStorage.getItem("age"),
         mobile: localStorage.getItem("mobile"),
@@ -60,27 +63,77 @@ async function submitForm() {
         timeSlot: document.getElementById("timeSlot").value,
         appointmentId: appointmentId,
         bookingDate: bookingDate
+
     };
 
     try {
 
         const response = await fetch("/appointment", {
+
             method: "POST",
+
             headers: {
+
                 "Content-Type": "application/json"
+
             },
+
             body: JSON.stringify(appointmentData)
+
         });
 
         const result = await response.json();
 
-        console.log(result);
+        if (response.ok) {
 
-        alert("Your appointment has been successfully submitted!");
+            try {
 
-        window.location.href = "thankyou.html";
+                await emailjs.send(
+
+                    "mindcare_service",
+
+                    "template_opb4n46",
+
+                    {
+
+                        name: appointmentData.name,
+                        email: appointmentData.email,
+                        appointmentId: appointmentData.appointmentId,
+                        therapist: appointmentData.therapist,
+                        appointmentDate: appointmentData.appointmentDate,
+                        timeSlot: appointmentData.timeSlot,
+                        sessionMode: appointmentData.sessionMode
+
+                    }
+
+                );
+
+                console.log("Confirmation Email Sent Successfully.");
+
+            }
+
+            catch (emailError) {
+
+                console.log(emailError);
+
+                console.log("Email Sending Failed.");
+
+            }
+
+            alert("Your appointment has been successfully submitted!");
+
+            window.location.href = "thankyou.html";
+
+        }
+
+        else {
+
+            alert(result.message);
+
+        }
 
     }
+
     catch (error) {
 
         console.log(error);
@@ -108,23 +161,35 @@ function validateForm() {
     let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!namePattern.test(name)) {
+
         alert("Name should contain only letters.");
+
         return false;
+
     }
 
     if (age < 18 || age > 100) {
+
         alert("Age must be between 18 and 100.");
+
         return false;
+
     }
 
     if (mobile.length != 10 || isNaN(mobile)) {
+
         alert("Enter a valid 10-digit mobile number.");
+
         return false;
+
     }
 
     if (!emailPattern.test(email)) {
+
         alert("Enter a valid email address.");
+
         return false;
+
     }
 
     saveBasicDetails();
