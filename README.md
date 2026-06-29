@@ -2,6 +2,8 @@
 
 A full-stack web application that allows users to book therapy appointments online while providing a secure admin dashboard to manage appointments, view analytics, and export reports.
 
+# 🌐 Live Demo
+🔗 https://therapy-booking-app.onrender.com
 ---
 
 👩‍💻 Developed By
